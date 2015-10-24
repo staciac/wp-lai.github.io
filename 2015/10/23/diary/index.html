@@ -1,0 +1,849 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="##任务要求
+
+
+完成一个极简交互式日记系统,需求如下:
+一次接收输入一行日记
+保存为本地文件
+再次运行系统时,能打印出过往的所有日记
+
+
+
+
+Version 1.0代码123456789101112131415161718192021# coding=utf-8import sysdef main():    message = sys.argv[1] #读取命令行中输入的参数    messa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python练习：建立交互日记系统">
+<meta property="og:url" content="http://yoursite.com/2015/10/23/diary/index.html">
+<meta property="og:site_name" content="Alan's">
+<meta property="og:description" content="##任务要求
+
+
+完成一个极简交互式日记系统,需求如下:
+一次接收输入一行日记
+保存为本地文件
+再次运行系统时,能打印出过往的所有日记
+
+
+
+
+Version 1.0代码123456789101112131415161718192021# coding=utf-8import sysdef main():    message = sys.argv[1] #读取命令行中输入的参数    messa">
+<meta property="og:image" content="http://i13.tietuku.com/00fc9e2b68b4c368.png">
+<meta property="og:image" content="http://i11.tietuku.com/04677c130357bdbc.png">
+<meta property="og:image" content="http://i11.tietuku.com/aa136cb885771316.png">
+<meta property="og:image" content="http://i13.tietuku.com/c7b0aa8a27cf3269.png">
+<meta property="og:updated_time" content="2015-10-23T10:34:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python练习：建立交互日记系统">
+<meta name="twitter:description" content="##任务要求
+
+
+完成一个极简交互式日记系统,需求如下:
+一次接收输入一行日记
+保存为本地文件
+再次运行系统时,能打印出过往的所有日记
+
+
+
+
+Version 1.0代码123456789101112131415161718192021# coding=utf-8import sysdef main():    message = sys.argv[1] #读取命令行中输入的参数    messa">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> python练习：建立交互日记系统 | Alan's </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Alan's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python练习：建立交互日记系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-23T17:16:53+08:00" content="2015-10-23">
+              2015-10-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/23/diary/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/23/diary/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##任务要求</p>
+<blockquote>
+<ul>
+<li>完成一个极简交互式日记系统,需求如下:<ul>
+<li>一次接收输入一行日记</li>
+<li>保存为本地文件</li>
+<li>再次运行系统时,能打印出过往的所有日记</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="Version_1-0">Version 1.0</h2><h3 id="代码">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    message = sys.argv[<span class="number">1</span>] <span class="comment">#读取命令行中输入的参数</span></span><br><span class="line">    message += <span class="string">'\n'</span> <span class="comment">#添加换行符</span></span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/diary.txt"</span> <span class="comment">#设定文件路径</span></span><br><span class="line">    f = open(file_path, <span class="string">'a+'</span>) <span class="comment">#建立跟file的连接</span></span><br><span class="line"></span><br><span class="line">    f.write(message) <span class="comment">#写入信息</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#显示file里现有的内容</span></span><br><span class="line">    f.seek(<span class="number">0</span>, <span class="number">0</span>) <span class="comment">#将读写位置移到file最开头</span></span><br><span class="line">    <span class="keyword">print</span> f.read()</span><br><span class="line"></span><br><span class="line">    f.close() <span class="comment">#建立完链接最后记得关掉是一个好习惯</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="关于中文编码">关于中文编码</h3><p>python的预设编码是ascii，这个可通过运行下列代码知道<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">print</span> sys.getdefaultencoding()</span><br></pre></td></tr></table></figure></p>
+<p>但是ascii编码并不支持中文，所以要将编码模式设置成支持中文的utf-8，（win上好像是gbk)，所以要在.py文件开头加这样一句<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure></p>
+<p>如果这样还是没有解决中文编码问题，可以试试用下面三句<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="关于file_open_mode">关于file open mode</h3><p>open()函数第二个参数用于确定文件打开的模式：</p>
+<ul>
+<li><code>r</code> for read<br>只读模式。起始位置在文件开头，也是参数缺省时的模式</li>
+<li><code>w</code> for write<br>写入模式。若文件不存在，新建文件进行写入；若文件已存在，先清空原有内容，然后开始写入。只能写不能读。</li>
+<li><code>a</code> for append<br>补充模式。若文件不存在，新建文件；若文件已存在，从文件末尾开始写入。只能写不能读。</li>
+<li><code>r+</code> = <code>r</code> + <code>w</code> <br>能读能写，起始位置在文件开头。</li>
+<li><code>w+</code> = <code>w</code> + <code>r</code> <br>能读能写，但原有内容会被清空。</li>
+<li><code>a+</code> = <code>a</code> + <code>w</code> <br>能读能写，起始位置在文件末尾。</li>
+</ul>
+<hr>
+<h2 id="加入时间标记">加入时间标记</h2><p>既然是日记系统，那么应该需要有时间标记。<br>time库里的time.ctime()能输出当时的时间信息，但里面内容太多了，我只需要’年月日’这三个信息就行。<br>而time.strftime()可以做到这一点，然后我选用的时间格式是’%b %d %Y’，关于时间格式的详细介绍可以看time库的官方文档，也可以看<a href="http://strftime.org" target="_blank" rel="external">strftime.org</a>。</p>
+<h3 id="代码-1">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#加入时间信息</span></span><br><span class="line">    message = time.strftime(<span class="string">'%b %d %Y'</span>)+<span class="string">': '</span>+sys.argv[<span class="number">1</span>]+<span class="string">'\n'</span></span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span> <span class="comment">#设定文件路径</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.txt'</span>, <span class="string">'a+'</span>) <span class="comment">#建立跟file的连接</span></span><br><span class="line"></span><br><span class="line">    f.write(message) <span class="comment">#写入信息</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#显示file里现有的内容</span></span><br><span class="line">    f.seek(<span class="number">0</span>, <span class="number">0</span>) <span class="comment">#将读写位置移到file最开头</span></span><br><span class="line">    <span class="keyword">print</span> f.read()</span><br><span class="line"></span><br><span class="line">    f.close() <span class="comment">#建立完链接最后记得关掉是一个好习惯</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="存储为md文件">存储为md文件</h2><p>由txt文件存储改为md文件存储有两个好处</p>
+<ul>
+<li>更为美观的信息设计。我将时间信息改为2级标题。</li>
+<li>信息输入能使用markdown标记，例如<code>这条信息</code>，我可以写成<code>这条**信息**</code>，用来强调<code>信息</code>。</li>
+</ul>
+<h3 id="代码-2">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 建立模板，'\'为续行符</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line">    message = sys.argv[<span class="number">1</span>]</span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span> <span class="comment">#设定文件路径，后缀名改为.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a+'</span>) <span class="comment">#建立跟file的连接</span></span><br><span class="line"></span><br><span class="line">    f.write(to_write) <span class="comment">#写入信息</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#显示file里现有的内容</span></span><br><span class="line">    f.seek(<span class="number">0</span>, <span class="number">0</span>) <span class="comment">#将读写位置移到file最开头</span></span><br><span class="line">    <span class="keyword">print</span> f.read()</span><br><span class="line"></span><br><span class="line">    f.close() </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="在命令行中直接预览md">在命令行中直接预览md</h2><p>命令行中输出的是纯文本格式，如果能显示markdown格式就更好了</p>
+<p>网上进行<a href="https://www.google.com.hk/?q=view+markdown+in+command+line" target="_blank" rel="external">搜索</a>，在<a href="http://unix.stackexchange.com/questions/4140/markdown-viewer" target="_blank" rel="external">第一个链接</a>的问答中了解到了<a href="https://github.com/axiros/terminal_markdown_viewer" target="_blank" rel="external">terminal_markdown_viewer</a>这个项目。</p>
+<p>然后阅读项目说明发现这是用python写的，能作为第三方库被python作如下调用</p>
+<p><strong>安装</strong><br>直接把<a href="https://github.com/axiros/terminal_markdown_viewer" target="_blank" rel="external">项目</a>下载下来，解压缩放到diary.md同级的目录下</p>
+<p><strong>使用</strong><br>这个项目里，核心的<code>mdv.py</code>模块调用了目录下很多其他的模块，所以需要将整个<code>terminal_markdown-viewer</code>目录作为一个库进行调用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> terminal_markdown_viewer-master <span class="keyword">import</span> mdv</span><br></pre></td></tr></table></figure>
+<p>然后的使用方法很简单，项目官网给出的说明是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config like this:</span></span><br><span class="line">mdv.term_columns = <span class="number">60</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># calling like this</span></span><br><span class="line">formatted = mdv.main(my_raw_markdown, c_theme=...)  <span class="comment"># all CLI options supported</span></span><br></pre></td></tr></table></figure>
+<h3 id="代码-3">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> terminal_markdown_viewer-master <span class="keyword">import</span> mdv </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#建立初始模板</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line">    message = sys.argv[<span class="number">1</span>]</span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span> <span class="comment">#设定文件路径，后缀名改为.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a+'</span>) <span class="comment">#建立跟file的连接</span></span><br><span class="line"></span><br><span class="line">    f.write(to_write) <span class="comment">#写入信息</span></span><br><span class="line"></span><br><span class="line">    f.seek(<span class="number">0</span>, <span class="number">0</span>) <span class="comment">#将读写位置移到file最开头</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#调用mdv.py显示md文本</span></span><br><span class="line">    mdv.term_columns = <span class="number">60</span></span><br><span class="line">    formatted = mdv.main(f.read(), theme=<span class="string">'528.9419'</span>)</span><br><span class="line">    <span class="keyword">print</span> formatted</span><br><span class="line"></span><br><span class="line">    f.close() </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>使用效果如下</p>
+<p><img src="http://i13.tietuku.com/00fc9e2b68b4c368.png" alt="terminal_markdown_viewer"></p>
+<p>ps: 输入 ‘`’，要用逃逸符号，前面加’\’</p>
+<hr>
+<h2 id="将md转换成html在浏览器中浏览">将md转换成html在浏览器中浏览</h2><p>尝试了在命令行中输出结果后，准备尝试一下把diary.md转换成html格式，然后在浏览器中浏览。</p>
+<p>找到了python的一个扩展库<a href="http://pythonhosted.org/Markdown/reference.html" target="_blank" rel="external">markdown</a>, 发现里面的markdown.markdownFromFile ()函数可以将diary.md转换为diary.html</p>
+<p>然后配合webbrowser.open()函数在浏览器里打开diary.html</p>
+<h3 id="代码-4">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys, time, markdown, webbrowser</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#建立初始模板    </span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line">    message = sys.argv[<span class="number">1</span>]</span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span> <span class="comment">#设定文件路径，后缀名改为.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a'</span>) <span class="comment">#建立跟file的连接，改为'a'模式</span></span><br><span class="line"></span><br><span class="line">    f.write(to_write) <span class="comment">#写入信息</span></span><br><span class="line">    f.close()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#将diary.md转换为diary.html</span></span><br><span class="line">    markdown.markdownFromFile(<span class="string">'diary.md'</span>, <span class="string">'diary.html'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#浏览器里打开本地的diary.md</span></span><br><span class="line">    webbrowser.open(<span class="string">'file://'</span>+file_path+<span class="string">'diary.html'</span>) <span class="comment">#文件路径前面加file://</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>打开后中文显示为乱码，将safari编码设置改为unicode(utf-8)之后中文显示就正常了，效果如下：<br><img src="http://i11.tietuku.com/04677c130357bdbc.png" alt=""><br><img src="http://i11.tietuku.com/aa136cb885771316.png" alt=""></p>
+<hr>
+<h2 id="用pandoc进行格式转换和样式添加">用pandoc进行格式转换和样式添加</h2><p>可以看到version2.2中，inline code并没有正确显示，这是因为<code>markdown.markdownFromFile()</code>只是将markdown的语法改为了html中的一些tag，并没有提供样式信息，之前出现的中文乱码，也是因为html文件开头没有编码格式的说明。</p>
+<p>这时候想到了从<a href="http://www.yangzhiping.com/tech/pandoc.html" target="_blank" rel="external">阳老博客</a>里知道的格式转换神器<a href="http://pandoc.org" target="_blank" rel="external"><code>pandoc</code></a>，印象中pandoc可以将md转换为完整的html，而且可以添加样式。</p>
+<p><strong>安装</strong><br>官网里有<code>pandoc</code>的<a href="http://pandoc.org/installing.html" target="_blank" rel="external">安装说明</a>，<br>mac用户可以在<a href="https://github.com/jgm/pandoc/releases/1.15.1" target="_blank" rel="external">这里</a>下载<code>pandoc-1.15.1-osx.pkg</code>直接进行安装。</p>
+<p><strong>使用</strong><br>用<code>$ pandoc --help</code>看参数说明</p>
+<ul>
+<li><code>-f</code>后面输入源格式(markdown) #optional</li>
+<li><code>-t</code>后面输入目的格式(html) #optional</li>
+<li><code>-o</code>后面输入目的文件(diary.html)</li>
+<li><code>-c</code>后面输入目标样式(style.css) #optional</li>
+<li>源文件(diary.md)前面可以不加参数</li>
+</ul>
+<p>我在网上下了一个<a href="https://gist.github.com/andyferra/2554919" target="_blank" rel="external">css样式</a>，文件名为<code>github.css</code>，解压后将它放到diary.md的同级目录</p>
+<p>之后想把<code>diary.md</code>转换为运用<code>github.css</code>样式的<code>diary.html</code>，<br>就可以<code>$ pandoc diary.md -o diary.html -c style.css</code></p>
+<p>了解了<code>pandoc</code>的使用，就可以开始码python代码了</p>
+<ul>
+<li>用subprocess.call()调用命令行的<code>pandoc</code>命令</li>
+<li>还是webbrowser.open()打开diary.html</li>
+</ul>
+<h3 id="代码-5">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys, time, webbrowser</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#建立初始模板</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line">    message = sys.argv[<span class="number">1</span>]</span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a'</span>)</span><br><span class="line"></span><br><span class="line">    f.write(to_write)</span><br><span class="line">    f.close() </span><br><span class="line">    </span><br><span class="line">    <span class="comment">#将diary.md转换为diary.html</span></span><br><span class="line">    call([<span class="string">'pandoc'</span>, <span class="string">'diary.md'</span>, <span class="string">'-o'</span>, <span class="string">'diary.html'</span>, <span class="string">'-c'</span>, <span class="string">'github.css'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#浏览器里打开本地的diary.md</span></span><br><span class="line">    webbrowser.open(<span class="string">'file://'</span>+file_path+<span class="string">'diary.html'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>显示效果：<br><img src="http://i13.tietuku.com/c7b0aa8a27cf3269.png" alt=""></p>
+<p>更美观了，代码块也正确显示了。</p>
+<h2 id="在Sublime_Text_3中编辑输入信息">在Sublime Text 3中编辑输入信息</h2><p>之前的版本里一直是以命令行里的参数作为日记内容进行输入的，是否能找到方法像使用<code>git commit</code>时那样</p>
+<ul>
+<li>激活Sublime Text 3(下简称为ST3)</li>
+<li>在ST3里输入信息</li>
+<li>保存关闭ST3之后，编辑的信息输入进diary.py程序用于后继处理</li>
+</ul>
+<p>因为ST3进行设置有个命令行命令<code>subl</code>，可以用<code>$ subl &lt;file&gt;</code>来用ST3打开文件。<br>所以我最初的想法是</p>
+<ul>
+<li>通过<code>subprocess.call</code>调用命令行的命令<code>subl</code></li>
+<li>用<code>$ subl temp.txt</code>打开临时文件</li>
+<li>写入要记录的信息进<code>temp.txt</code>，关闭ST3</li>
+<li>将<code>temp.txt</code>的信息读写进储存信息的<code>diary.md</code>里</li>
+<li>删除临时文件<code>temp.txt</code></li>
+</ul>
+<p>根据这个思路，将原代码中的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">message = sys.argv[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">subprocess.call(<span class="string">"subl temp.txt"</span>.split())</span><br><span class="line">f = open(<span class="string">'temp.txt'</span>, <span class="string">'r'</span>)</span><br><span class="line">message = f.read()</span><br><span class="line">f.close()</span><br><span class="line">os.remove(<span class="string">'temp.txt'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行后出错，错误信息为</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOError: [Errno <span class="number">2</span>] No such <span class="built_in">file</span> <span class="operator">or</span> <span class="built_in">directory</span>: <span class="string">'temp.txt'</span></span><br></pre></td></tr></table></figure>
+<p>想了以后发现了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subprocess.call(<span class="string">"subl temp.txt"</span>.split())</span><br></pre></td></tr></table></figure>
+<p>上述语句在打开<code>temp.txt</code>的同时就已经在执行了后面的命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(<span class="string">'temp.txt'</span>, <span class="string">'r'</span>)</span><br></pre></td></tr></table></figure>
+<p>因为还没来得及写入信息保存<code>temp.txt</code>，所以结果会出现”No such file”的错误。</p>
+<p>后来用<code>$ subl --help</code>看看<code>subl</code>的参数，发现参数说明里</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="keyword">w</span> <span class="built_in">or</span> --wai<span class="variable">t:</span>        Wait <span class="keyword">for</span> the <span class="keyword">files</span> <span class="keyword">to</span> <span class="keyword">be</span> closed before returning</span><br></pre></td></tr></table></figure>
+<p>然后将<code>subprocess.call(&quot;subl temp.txt&quot;.split())</code>改为<code>subprocess.call(&quot;subl -w temp.txt&quot;.split())</code>之后代码运行成功。</p>
+<p>此外，还找到python里<a href="https://docs.python.org/2/library/tempfile.html" target="_blank" rel="external"><code>tempfile</code>库</a>，可以用它来创立临时文件来代替<code>temp.txt</code>。</p>
+<h3 id="代码-6">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> time, tempfile, webbrowser</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#建立初始模板</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 时间信息</span></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用户输入的信息</span></span><br><span class="line">    tempf =  tempfile.NamedTemporaryFile(suffix=<span class="string">".tmp"</span>) <span class="comment">#创立临时文件</span></span><br><span class="line">    call([<span class="string">'subl'</span>, <span class="string">'-w'</span>, tempf.name]) <span class="comment">#打开ST3编辑临时文件</span></span><br><span class="line">    message = tempf.read()</span><br><span class="line">    tempf.close()</span><br><span class="line"></span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写入信息到diary.md</span></span><br><span class="line">    file_path = <span class="string">"/Users/alan/Desktop/"</span> <span class="comment">#设定文件路径，后缀名改为.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a+'</span>) <span class="comment">#建立跟file的连接</span></span><br><span class="line">    f.write(to_write) <span class="comment">#写入信息</span></span><br><span class="line">    f.close() </span><br><span class="line"></span><br><span class="line">    <span class="comment">#将diary.md转换为diary.html</span></span><br><span class="line">    call([<span class="string">'pandoc'</span>, <span class="string">'diary.md'</span>, <span class="string">'-o'</span>, <span class="string">'diary.html'</span>, <span class="string">'-c'</span>, <span class="string">'github.css'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#浏览器里打开本地的diary.md</span></span><br><span class="line">    webbrowser.open(<span class="string">'file://'</span>+file_path+<span class="string">'diary.html'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="使用docopt进行参数解析">使用docopt进行参数解析</h2><ul>
+<li>将<code>main()</code>函数拆分为write()和read()两个函数</li>
+<li>用<code>docopt</code>进行参数解析</li>
+</ul>
+<p>关于<code>docopt</code>的更多介绍可以看我写的<a href="https://wp-lai.gitbooks.io/learn-python/content/0MOOC/docopt.html" target="_blank" rel="external"><code>docopt</code>教程</a></p>
+<h3 id="代码-7">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># author: "Alan Lai"</span></span><br><span class="line"><span class="comment"># mail: "techwplai@gmail.com"</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""alan_diary</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  diary.py [options]</span><br><span class="line">  diary.py (-h | --help)</span><br><span class="line">  diary.py --version</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -r --read     Read your diary archive.         </span><br><span class="line">  -w --write    Write a new diary entry.</span><br><span class="line">  -h --help     Help doc.</span><br><span class="line">  --version     Show version.</span><br><span class="line"></span><br><span class="line">"""</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time, tempfile, webbrowser, os</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</span><br><span class="line"></span><br><span class="line">file_path = os.getcwd() + <span class="string">'/'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#建立初始模板</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 时间信息</span></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用户输入的信息</span></span><br><span class="line">    tempf =  tempfile.NamedTemporaryFile(suffix=<span class="string">".tmp"</span>) <span class="comment">#创立临时文件</span></span><br><span class="line">    call([<span class="string">'subl'</span>, <span class="string">'-w'</span>, tempf.name]) <span class="comment">#打开ST3编辑临时文件</span></span><br><span class="line">    message = tempf.read()</span><br><span class="line">    tempf.close()</span><br><span class="line"></span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写入信息到diary.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a'</span>)</span><br><span class="line">    f.write(to_write)</span><br><span class="line">    f.close() </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#将diary.md转换为diary.html</span></span><br><span class="line">    call([<span class="string">'pandoc'</span>, <span class="string">'diary.md'</span>, <span class="string">'-o'</span>, <span class="string">'diary.html'</span>, <span class="string">'-c'</span>, <span class="string">'github.css'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#浏览器里打开本地的diary.md</span></span><br><span class="line">    webbrowser.open(<span class="string">'file://'</span>+file_path+<span class="string">'diary.html'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arguments = docopt(__doc__, version=<span class="string">'alan_diary 4.0'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> arguments[<span class="string">'--write'</span>] <span class="keyword">and</span> arguments[<span class="string">'--read'</span>]:</span><br><span class="line">        write()</span><br><span class="line">        read()</span><br><span class="line">    <span class="keyword">elif</span> arguments[<span class="string">'--write'</span>]:</span><br><span class="line">        write()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        read()</span><br></pre></td></tr></table></figure>
+<h2 id="添加初始化日记本功能">添加初始化日记本功能</h2><p>如果一开始就使用</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python diary<span class="class">.md</span> -r</span><br></pre></td></tr></table></figure>
+<p>会出现’no such file’的错误，因为还没创建日记本，无法进行初次阅读</p>
+<p>所以先建立一个初始化的函数init(), 然后在不存在diary.md时调用它。</p>
+<h3 id="代码-8">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""初始化日记本"""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创造diary.md</span></span><br><span class="line">    f = open(<span class="string">'diary.md'</span>, <span class="string">"w"</span>)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># docopt会返回一个涉及参数的字典</span></span><br><span class="line">    arguments = docopt(__doc__, version=<span class="string">'alan_diary 4.1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'diary.md'</span>):</span><br><span class="line">        init()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> arguments[<span class="string">'--write'</span>] <span class="keyword">and</span> arguments[<span class="string">'--read'</span>]: <span class="comment">#-wr时先写再读</span></span><br><span class="line">        write()</span><br><span class="line">        read()</span><br><span class="line">    <span class="keyword">elif</span> arguments[<span class="string">'--write'</span>]: <span class="comment">#-w时写入</span></span><br><span class="line">        write()</span><br><span class="line">    <span class="keyword">else</span>: <span class="comment">#-r或不带参数时阅读</span></span><br><span class="line">        read()</span><br></pre></td></tr></table></figure>
+<h2 id="用web库中的markdown模块进行格式转换">用web库中的markdown模块进行格式转换</h2><p><code>Pandoc</code>是个非常强大的软件，但用在我这里有点大材小用，而且要求用户预先安装了<code>Pandoc</code>也有点太不人性化了。</p>
+<p>除了之前提到的第三方库<code>markdown</code>之外，我发现<code>web.py</code>中自带了一个<a href="https://github.com/webpy/webpy/blob/master/tools/markdown.py" target="_blank" rel="external"><code>markdown.py</code>模块</a>，可以进行md到html的格式转换，而且更易用。</p>
+<p>但是转换后的html文件只是<code>&lt;body&gt;&lt;/body&gt;</code>中的内容，要补足头尾的<code>HTML</code>信息</p>
+<h3 id="代码-9">代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># author: "Alan Lai"</span></span><br><span class="line"><span class="comment"># mail: "techwplai@gmail.com"</span></span><br><span class="line"><span class="comment"># with support of Sublime Text, Pandoc &amp; docopt</span></span><br><span class="line"><span class="comment"># with Thanks to andyferra's github.css</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 给docopt提供帮助文档</span></span><br><span class="line"><span class="string">"""alan_diary</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  diary.py [options]</span><br><span class="line">  diary.py (-h | --help)</span><br><span class="line">  diary.py --version</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -r --read     阅读所有日记        </span><br><span class="line">  -w --write    新添一条日记</span><br><span class="line">  -h --help     显示帮助文档</span><br><span class="line">  --version     显示版本信息</span><br><span class="line"></span><br><span class="line">"""</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入所需模块和函数</span></span><br><span class="line"><span class="keyword">import</span> time, tempfile, webbrowser, os</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"><span class="keyword">from</span> docopt <span class="keyword">import</span> docopt</span><br><span class="line"><span class="keyword">from</span> markdown <span class="keyword">import</span> markdown</span><br><span class="line"></span><br><span class="line"><span class="comment">#获取文件所在路径</span></span><br><span class="line">file_path = os.getcwd() + <span class="string">'/'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""调用ST3编辑输入信息"""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#建立初始模板，"\"是续行符</span></span><br><span class="line">    template = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">## &#123;my_time&#125;</span><br><span class="line">&#123;message&#125;</span><br><span class="line"></span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 时间信息</span></span><br><span class="line">    my_time = time.strftime(<span class="string">'%b %d %Y'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用户输入的信息</span></span><br><span class="line">    tempf =  tempfile.NamedTemporaryFile(suffix=<span class="string">".tmp"</span>) <span class="comment">#创立临时文件</span></span><br><span class="line">    call([<span class="string">'subl'</span>, <span class="string">'-w'</span>, tempf.name]) <span class="comment">#打开ST3编辑临时文件</span></span><br><span class="line">    message = tempf.read() <span class="comment">#读出到message里</span></span><br><span class="line">    tempf.close()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将时间和记录传入模板里</span></span><br><span class="line">    to_write = template.format(my_time=my_time, message=message)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 写入信息到diary.md</span></span><br><span class="line">    f = open(file_path+<span class="string">'diary.md'</span>, <span class="string">'a'</span>)</span><br><span class="line">    f.write(to_write)</span><br><span class="line">    f.close() </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""在默认浏览器中浏览日记"""</span></span><br><span class="line"></span><br><span class="line">    head = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span><br><span class="line">&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;</span><br><span class="line">  &lt;meta http-equiv="Content-Style-Type" content="text/css" /&gt;</span><br><span class="line">  &lt;meta name="generator" content="pandoc" /&gt;</span><br><span class="line">  &lt;title&gt;小小日记本&lt;/title&gt;</span><br><span class="line">  &lt;style type="text/css"&gt;code&#123;white-space: pre;&#125;&lt;/style&gt;</span><br><span class="line">  &lt;link rel="stylesheet" href="github.css" type="text/css" /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">'''</span></span><br><span class="line"></span><br><span class="line">    end = \</span><br><span class="line"><span class="string">'''</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">'''</span></span><br><span class="line">    </span><br><span class="line">    f = open(<span class="string">'diary.md'</span>)</span><br><span class="line">    body = markdown(f.read())</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">    htmlcontent = head + body +end</span><br><span class="line">    </span><br><span class="line">    f = open(<span class="string">'diary.html'</span>, <span class="string">'w'</span>)</span><br><span class="line">    f.write(htmlcontent)</span><br><span class="line">    f.close</span><br><span class="line"></span><br><span class="line">    <span class="comment">#浏览器里打开本地的diary.md，打开本地html文件时用file://开头</span></span><br><span class="line">    webbrowser.open(<span class="string">'file://'</span>+file_path+<span class="string">'diary.html'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""初始化日记本"""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创造diary.md</span></span><br><span class="line">    f = open(<span class="string">'diary.md'</span>, <span class="string">"w"</span>)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># docopt会返回一个涉及参数的字典</span></span><br><span class="line">    arguments = docopt(__doc__, version=<span class="string">'alan_diary 4.2'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'diary.md'</span>):</span><br><span class="line">        init()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> arguments[<span class="string">'--write'</span>] <span class="keyword">and</span> arguments[<span class="string">'--read'</span>]: <span class="comment">#-wr时先写再读</span></span><br><span class="line">        write()</span><br><span class="line">        read()</span><br><span class="line">    <span class="keyword">elif</span> arguments[<span class="string">'--write'</span>]: <span class="comment">#-w时写入</span></span><br><span class="line">        write()</span><br><span class="line">    <span class="keyword">else</span>: <span class="comment">#-r或不带参数时阅读</span></span><br><span class="line">        read()</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/23/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="Alan Lai" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Alan Lai</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wp-lai" target="_blank">
+                  <i class="fa fa-github fa-fw"></i> GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Version_1-0"><span class="nav-number">1.</span> <span class="nav-text">Version 1.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于中文编码"><span class="nav-number">1.2.</span> <span class="nav-text">关于中文编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于file_open_mode"><span class="nav-number">1.3.</span> <span class="nav-text">关于file open mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加入时间标记"><span class="nav-number">2.</span> <span class="nav-text">加入时间标记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储为md文件"><span class="nav-number">3.</span> <span class="nav-text">存储为md文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在命令行中直接预览md"><span class="nav-number">4.</span> <span class="nav-text">在命令行中直接预览md</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-3"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将md转换成html在浏览器中浏览"><span class="nav-number">5.</span> <span class="nav-text">将md转换成html在浏览器中浏览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-4"><span class="nav-number">5.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用pandoc进行格式转换和样式添加"><span class="nav-number">6.</span> <span class="nav-text">用pandoc进行格式转换和样式添加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-5"><span class="nav-number">6.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Sublime_Text_3中编辑输入信息"><span class="nav-number">7.</span> <span class="nav-text">在Sublime Text 3中编辑输入信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-6"><span class="nav-number">7.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用docopt进行参数解析"><span class="nav-number">8.</span> <span class="nav-text">使用docopt进行参数解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-7"><span class="nav-number">8.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加初始化日记本功能"><span class="nav-number">9.</span> <span class="nav-text">添加初始化日记本功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-8"><span class="nav-number">9.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用web库中的markdown模块进行格式转换"><span class="nav-number">10.</span> <span class="nav-text">用web库中的markdown模块进行格式转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-9"><span class="nav-number">10.1.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Lai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wp-lai';
+      var disqus_identifier = '2015/10/23/diary/';
+      var disqus_title = 'python练习：建立交互日记系统';
+      var disqus_url = 'http://yoursite.com/2015/10/23/diary/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      isMobile() && FastClick.attach(document.body);
+
+      // Define Motion Sequence.
+      motionIntegrator
+        .add(motionMiddleWares.logo)
+        .add(motionMiddleWares.menu)
+        .add(motionMiddleWares.backToTop)
+        .add(motionMiddleWares.postList)
+        .add(motionMiddleWares.sidebar);
+
+      // Bootstrap Motion.
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
