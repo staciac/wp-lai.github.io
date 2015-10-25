@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-10-25T13:30:08.000Z</updated>
+  <updated>2015-10-25T14:54:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Mac下命令行的一些设置]]></title>
+    <link href="http://yoursite.com/2015/10/25/shell/"/>
+    <id>http://yoursite.com/2015/10/25/shell/</id>
+    <published>2015-10-25T14:52:54.000Z</published>
+    <updated>2015-10-25T14:54:01.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="ZSH">ZSH</h2><p>ZSH是比bash更优秀的一个终端</p>
+<p>安装</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install zsh</span><br></pre></td></tr></table></figure>
+<p>将默认<code>shell</code>从换成<code>zsh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chsh <span class="operator">-s</span> `<span class="built_in">which</span> zsh`</span><br></pre></td></tr></table></figure>
+<h2 id="oh-my-zsh">oh-my-zsh</h2><p>安装，使用下面两条命令其中一条就行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># via curl</span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br><span class="line"><span class="comment"># via wget </span></span><br><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>然后可以在<code>~/.zshrc</code>里编辑配置，例如将<code>proxychains4</code>加个别名<code>pc</code></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span><span class="keyword">alias</span> pc=<span class="string">'proxychain4'</span></span><br></pre></td></tr></table></figure>
+<p>最后<code>$ source ~/.zshrc</code>使配置生效</p>
+<p><em>参考文章</em><br><a href="http://wulfric.me/2015/08/zsh/" target="_blank" rel="external">一些命令行效率工具</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="ZSH">ZSH</h2><p>ZSH是比bash更优秀的一个终端</p>
+<p>安装</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="lin]]>
+    </summary>
+    
+      <category term="mac" scheme="http://yoursite.com/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[shell.md]]></title>
+    <link href="http://yoursite.com/2015/10/25/shell-md/"/>
+    <id>http://yoursite.com/2015/10/25/shell-md/</id>
+    <published>2015-10-25T14:52:40.000Z</published>
+    <updated>2015-10-25T14:52:40.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Mac下给终端使用代理]]></title>

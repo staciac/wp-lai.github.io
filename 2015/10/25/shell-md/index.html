@@ -34,7 +34,7 @@
 
 
 
-  <meta name="keywords" content="mac," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -45,37 +45,16 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用proxychains-ng
-安装proxychains-ng1$ brew install proxychains-ng
-安装过程中如果出现问题，可以查
-1$ brew doctor
-或
-1$ brew doctor | grep &quot;问题信息&quot;
-查看解决办法。
-配置config文件安装完之后需要配置一个proxycha">
+<meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac下给终端使用代理">
-<meta property="og:url" content="http://yoursite.com/2015/10/25/proxychains4/index.html">
+<meta property="og:title" content="shell.md">
+<meta property="og:url" content="http://yoursite.com/2015/10/25/shell-md/index.html">
 <meta property="og:site_name" content="Alan's">
-<meta property="og:description" content="很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用proxychains-ng
-安装proxychains-ng1$ brew install proxychains-ng
-安装过程中如果出现问题，可以查
-1$ brew doctor
-或
-1$ brew doctor | grep &quot;问题信息&quot;
-查看解决办法。
-配置config文件安装完之后需要配置一个proxycha">
-<meta property="og:updated_time" content="2015-10-25T13:30:08.000Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2015-10-25T14:52:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mac下给终端使用代理">
-<meta name="twitter:description" content="很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用proxychains-ng
-安装proxychains-ng1$ brew install proxychains-ng
-安装过程中如果出现问题，可以查
-1$ brew doctor
-或
-1$ brew doctor | grep &quot;问题信息&quot;
-查看解决办法。
-配置config文件安装完之后需要配置一个proxycha">
+<meta name="twitter:title" content="shell.md">
+<meta name="twitter:description">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -87,7 +66,7 @@
 
 
 
-  <title> Mac下给终端使用代理 | Alan's </title>
+  <title> shell.md | Alan's </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +212,7 @@
             
             
               
-                Mac下给终端使用代理
+                shell.md
               
             
           </h1>
@@ -242,7 +221,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-25T21:20:19+08:00" content="2015-10-25">
+            <time itemprop="dateCreated" datetime="2015-10-25T22:52:40+08:00" content="2015-10-25">
               2015-10-25
             </time>
           </span>
@@ -253,8 +232,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/25/proxychains4/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/25/proxychains4/" itemprop="commentsCount"></span>
+              <a href="/2015/10/25/shell-md/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/25/shell-md/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -273,69 +252,27 @@
       
 
       
-        <span itemprop="articleBody"><p>很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用<br><a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external">proxychains-ng</a></p>
-<h3 id="安装proxychains-ng">安装proxychains-ng</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install proxychains-ng</span><br></pre></td></tr></table></figure>
-<p>安装过程中如果出现问题，可以查</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>doctor</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew doctor <span class="string">| grep "</span>问题信息<span class="string">"</span></span><br></pre></td></tr></table></figure>
-<p>查看解决办法。</p>
-<h3 id="配置config文件">配置config文件</h3><p>安装完之后需要配置一个<code>proxychains.conf</code>文件，</p>
-<p>它的位置可以在</p>
-<ul>
-<li>./proxychains.conf</li>
-<li>$(HOME)/.proxychains/proxychains.conf</li>
-<li>$(sysconfdir)/proxychains.conf 通常是（/etc/proxychains.conf）</li>
-</ul>
-<p>也可以是写进环境变量<code>PROXYCHAINS_CONF_FILE</code>里</p>
-<p>如果不在上述地方里，也可以用<code>-f</code>参数加文件地址，如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 -f /etc/proxychains-other<span class="class">.conf</span> telnet targethost2.com</span><br></pre></td></tr></table></figure>
-<p>cofig文件的写法可以参照<a href="https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf" target="_blank" rel="external">proxychains.conf</a>进行设置，主要把最后一行的代理改为自己的代理就行了。</p>
-<h3 id="使用">使用</h3><p>需要通过代理使用命令时在前面加<code>proxychains4</code>即可</p>
-<p>可以用下面的方法来测试是否设置成功（测试连接twitter）</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">proxychians4</span> <span class="tag">curl</span> <span class="tag">twitter</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
-<h3 id="El_Capitan下无法使用的解决方法">El Capitan下无法使用的解决方法</h3><p>由于El Capitan引入了<a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">SIP机制(System Integrity Protection)</a>，安装上的proxychains-ng无法正常使用，一种解决办法是取消SIP机制，具体做法是：</p>
-<blockquote>
-<ul>
-<li>重启电脑，按住<code>Command+R</code>(直到出现苹果标志)进入Recovery Mode</li>
-<li>左上角菜单里找到<code>实用工具</code> -&gt; <code>终端</code></li>
-<li>输入<code>csrutil disable</code>回车</li>
-<li>重启Mac即可</li>
-</ul>
-</blockquote>
-<p>如果想重新启动SIP机制重复上述步骤改用<code>csrutil enable</code>即可</p>
-<h3 id="结合curl">结合curl</h3><p>给终端上了代理之后，就可以用终端来进行下载，<code>curl</code>的命令如下</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o <span class="tag">&lt;<span class="title">file</span>&gt;</span> <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这条命令可以下载url里的内容到file中。</p>
-<p>然后，通过使用<code>-L</code>可以使地址重定向，使用<code>-C</code>可以进行断点续传，用<code>--limit-rate 1000B</code>可以限制下载速度不超过1000B/s。</p>
-<p>需要授权时，使用</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">curl</span> <span class="tag">-u</span> <span class="tag">username</span><span class="pseudo">:password</span> <span class="tag">URL</span></span><br></pre></td></tr></table></figure></span>
+        <span itemprop="articleBody"></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/mac/" rel="tag">#mac</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/23/diary/" rel="next" title="python练习：建立交互日记系统">
-                <i class="fa fa-chevron-left"></i> python练习：建立交互日记系统
+              <a href="/2015/10/25/proxychains4/" rel="next" title="Mac下给终端使用代理">
+                <i class="fa fa-chevron-left"></i> Mac下给终端使用代理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/10/25/shell-md/" rel="prev" title="shell.md">
-                shell.md <i class="fa fa-chevron-right"></i>
+              <a href="/2015/10/25/shell/" rel="prev" title="Mac下命令行的一些设置">
+                Mac下命令行的一些设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -462,7 +399,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装proxychains-ng"><span class="nav-number">1.</span> <span class="nav-text">安装proxychains-ng</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置config文件"><span class="nav-number">2.</span> <span class="nav-text">配置config文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#El_Capitan下无法使用的解决方法"><span class="nav-number">4.</span> <span class="nav-text">El Capitan下无法使用的解决方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合curl"><span class="nav-number">5.</span> <span class="nav-text">结合curl</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -517,9 +454,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'wp-lai';
-      var disqus_identifier = '2015/10/25/proxychains4/';
-      var disqus_title = 'Mac下给终端使用代理';
-      var disqus_url = 'http://yoursite.com/2015/10/25/proxychains4/';
+      var disqus_identifier = '2015/10/25/shell-md/';
+      var disqus_title = 'shell.md';
+      var disqus_url = 'http://yoursite.com/2015/10/25/shell-md/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
