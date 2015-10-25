@@ -1,0 +1,848 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Alan's" type="application/atom+xml" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="背景作为马云门前的败家娘们/爷们，在淘宝上搜东西是常做的事。
+对于搜索，我们一般的流程是：
+
+打开浏览器
+打开淘宝
+输入搜索关键词
+
+如果能用python写个脚本简化这个流程，那想必是极好的。
+最后想达到的结果是，在命令行输入1python search_taobao.py 关键词1 关键词2 ...
+就能直接打开淘宝搜索网页，并搜索关键词
+构思要达到上述效果，我想到的逻辑步骤是：
+
+读取命令行的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python练习：命令行进行淘宝搜索">
+<meta property="og:url" content="http://yoursite.com/2015/10/20/taobao/index.html">
+<meta property="og:site_name" content="Alan's">
+<meta property="og:description" content="背景作为马云门前的败家娘们/爷们，在淘宝上搜东西是常做的事。
+对于搜索，我们一般的流程是：
+
+打开浏览器
+打开淘宝
+输入搜索关键词
+
+如果能用python写个脚本简化这个流程，那想必是极好的。
+最后想达到的结果是，在命令行输入1python search_taobao.py 关键词1 关键词2 ...
+就能直接打开淘宝搜索网页，并搜索关键词
+构思要达到上述效果，我想到的逻辑步骤是：
+
+读取命令行的">
+<meta property="og:image" content="http://i13.tietuku.com/e28d4ade759a85e6.png">
+<meta property="og:image" content="http://i13.tietuku.com/4e6e6d7351106769.png">
+<meta property="og:image" content="http://i11.tietuku.com/486d407d710bf3e8.png">
+<meta property="og:image" content="http://i11.tietuku.com/a577e41f97a3ec07.png">
+<meta property="og:updated_time" content="2015-10-25T01:59:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python练习：命令行进行淘宝搜索">
+<meta name="twitter:description" content="背景作为马云门前的败家娘们/爷们，在淘宝上搜东西是常做的事。
+对于搜索，我们一般的流程是：
+
+打开浏览器
+打开淘宝
+输入搜索关键词
+
+如果能用python写个脚本简化这个流程，那想必是极好的。
+最后想达到的结果是，在命令行输入1python search_taobao.py 关键词1 关键词2 ...
+就能直接打开淘宝搜索网页，并搜索关键词
+构思要达到上述效果，我想到的逻辑步骤是：
+
+读取命令行的">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> python练习：命令行进行淘宝搜索 | Alan's </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Alan's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'VGGn7htG4Y1zRrsdnLb8','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python练习：命令行进行淘宝搜索
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-20T17:16:53+08:00" content="2015-10-20">
+              2015-10-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/20/taobao/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/20/taobao/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="背景">背景</h2><p>作为马云门前的败家娘们/爷们，在淘宝上搜东西是常做的事。</p>
+<p>对于搜索，我们一般的流程是：</p>
+<ul>
+<li>打开浏览器</li>
+<li>打开淘宝</li>
+<li>输入搜索关键词</li>
+</ul>
+<p>如果能用python写个脚本简化这个流程，那想必是极好的。</p>
+<p>最后想达到的结果是，在命令行输入<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python search_taobao.py 关键词<span class="number">1</span> 关键词<span class="number">2</span> ...</span><br></pre></td></tr></table></figure></p>
+<p>就能直接打开淘宝搜索网页，并搜索关键词</p>
+<h2 id="构思">构思</h2><p>要达到上述效果，我想到的逻辑步骤是：</p>
+<ol>
+<li>读取命令行的参数</li>
+<li>打开浏览器，打开淘宝页面</li>
+<li>搜索关键词</li>
+</ol>
+<p>经过google大法之后，了解到<br>对于步骤1，标准库<code>sys</code>中<br><code>argv</code>变量可以储存python命令后的参数（包括第一个参数，文件名search_taobao.py)</p>
+<p>对于步骤2，标准库<code>webbrowser</code>中<code>open</code>方法可以打开指定网页，例如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line">webbrowser.open(<span class="string">'www.taobao.com'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>对于步骤3，可以使用<a href="https://en.wikipedia.org/wiki/Query_string" target="_blank" rel="external">Query String</a>在打开网址时就把关键词post上去。</p>
+<p>对于淘宝，相应的做法是输入<code>https://s.taobao.com/search?q={keywords}</code>，将{keywords}替换成想输入的关键词就行。  </p>
+<h2 id="实现">实现</h2><p>综上所思，初步写的解决方案如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># file name "search_taobao.py"</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line"></span><br><span class="line">keywords = sys.argv[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://s.taobao.com/search?q="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> keywords:</span><br><span class="line">    url += i + <span class="string">"+"</span></span><br><span class="line">url = url[:-<span class="number">1</span>] <span class="comment">#remove the last '+''</span></span><br><span class="line">webbrowser.open(url)</span><br></pre></td></tr></table></figure></p>
+<p>命令行输入<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> search_taobao.<span class="keyword">py</span> <span class="keyword">python</span></span><br></pre></td></tr></table></figure></p>
+<p>成功打开淘宝搜索</p>
+<p>尝试输入多个关键词<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> search_taobao.<span class="keyword">py</span> <span class="keyword">python</span> Django</span><br></pre></td></tr></table></figure></p>
+<p>也搜索成功</p>
+<h2 id="问题">问题</h2><p>虽然使用英文关键词时搜索成功，但在使用中文关键词时出现了bug<br>例如，搜索关键词<code>书</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python search_taobao<span class="class">.py</span> 书</span><br></pre></td></tr></table></figure></p>
+<p>在打开的淘宝页面，搜索的关键词却变成了<code>%C2%A0È</code></p>
+<h2 id="debug">debug</h2><p>首先这肯定是中文编码的问题，因此尝试在文件开头加一句<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># coding=utf-<span class="number">8</span></span></span><br></pre></td></tr></table></figure></p>
+<p>测试之后问题依然存在</p>
+<p>然后猜测是sys.argv读取中文参数时出现问题<br>在脚本中加入print语句<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line"></span><br><span class="line">keywords = sys.argv[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://s.taobao.com/search?q="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> keywords:</span><br><span class="line">    <span class="keyword">print</span> i <span class="comment"># Debug</span></span><br><span class="line">    url += i + <span class="string">"+"</span></span><br><span class="line">url = url[:-<span class="number">1</span>] <span class="comment">#remove the last '+''</span></span><br><span class="line"><span class="comment"># webbrowser.open(url)</span></span><br></pre></td></tr></table></figure></p>
+<p>发现output中的中文显示正常  </p>
+<p>然后猜测是英文字符串和中文字符串concatenate过程中出现问题<br>改脚本为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line"></span><br><span class="line">keywords = sys.argv[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://s.taobao.com/search?q="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> keywords:</span><br><span class="line">    url += i + <span class="string">"+"</span></span><br><span class="line">    <span class="keyword">print</span> url <span class="comment"># Debug</span></span><br><span class="line">url = url[:-<span class="number">1</span>] <span class="comment">#remove the last '+''</span></span><br><span class="line"><span class="comment"># webbrowser.open(url)</span></span><br></pre></td></tr></table></figure></p>
+<p>测试发现output中文显示正常</p>
+<p>最后猜测是<code>webbrowser.open</code>函数在使用参数含中文时会有bug<br>直接运行如下脚本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line">webbrowser.open(<span class="string">"https://s.taobao.com/search?q=书"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>结果证实了我的猜测，问题出在<code>webbrowser.open</code>上</p>
+<h2 id="改进">改进</h2><p>为了解决这个bug，几轮google之后还是没找到解决<code>webbrowser.open</code>对中文不支持的问题。但在这个过程中，找到了<code>subprocess</code>库，这个库中<code>call</code>函数可以让python直接运行命令行命令，另外还查到了命令行的open命令可以直接在浏览器中打开网页。遂把代码改写如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">keywords = sys.argv[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://s.taobao.com/search?q="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> keywords:</span><br><span class="line">    url += i + <span class="string">"+"</span></span><br><span class="line">url = url[:-<span class="number">1</span>]</span><br><span class="line">subprocess.call([<span class="string">"open"</span>, url])</span><br></pre></td></tr></table></figure></p>
+<p>之后测试中文关键词、多关键词都运行成功，算是实现了设想的功能。</p>
+<p>ps： Mac下面，可以在命令行多加一句<code>say</code>的命令，用于命令执行完进行提示。例如<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">python</span> search_taobao.<span class="keyword">py</span> 书;say mission <span class="built_in">complete</span></span><br></pre></td></tr></table></figure></p>
+<p>执行之后，系统会说mission complete，瞬间成就感爆表。</p>
+<p>pps: 后来发现用os.system()调用命令行命令也行<br>代码可改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">keywords = sys.argv[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"https://s.taobao.com/search?q="</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> keywords:</span><br><span class="line">    url += i + <span class="string">"+"</span></span><br><span class="line">url = url[:-<span class="number">1</span>]</span><br><span class="line">os.system(<span class="string">"open "</span>+url)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="update">update</h3><p><em>Sun Oct 18 03:27:54 2015</em></p>
+<p>@LeiyuZhang同学提示我说，win系统下，用webbrowser.open能正确打开带中文字符的网址，这促使我重新去思考我之前的推断是否正确。</p>
+<p>接着我就不停地折腾，想试着看看是否在Mac下也能打开webbrowser.open打开带中文字符的网址，或者说是否能检测到这个问题出现的边界条件。</p>
+<p>我最初是折腾了unicode、utf-8、gbk等编码，也去看了官方文档，还是没有什么进展。</p>
+<p>之后测试是否是浏览器的原因，我机子的默认浏览器是chrome  </p>
+<p>运行代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line">webbroser.open(<span class="string">"http://www.google.com?q=中文搜索"</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下图所示</p>
+<p><img src="http://i13.tietuku.com/e28d4ade759a85e6.png" alt="默认浏览器运行结果"></p>
+<p>接着改用safari</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line">web = webbrowser.get(<span class="string">'safari'</span>)</span><br><span class="line">web.open(<span class="string">"http://www.google.com?q=中文搜索"</span>)</span><br></pre></td></tr></table></figure>
+<p>运行之后居然在safari成功打开了</p>
+<p><img src="http://i13.tietuku.com/4e6e6d7351106769.png" alt="safari"></p>
+<p>然后我就在思考，问题是不是出在chrome上。<br>虽然webbroser.get()本身可供选择的参数不包括chrome，但我在网上搜到了一个主动选择在chrome上打开的<a href="http://stackoverflow.com/questions/6042335/calling-chrome-web-browser-from-the-webbrowser-get-in-python" target="_blank" rel="external">方法</a></p>
+<p>运行如下命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line">web = webbrowser.get(<span class="string">"open -a /Applications/Google\ Chrome.app %s"</span>)</span><br><span class="line">web.open(<span class="string">"http://www.google.com?q=中文搜索"</span>)</span><br></pre></td></tr></table></figure>
+<p>发现也能在chrome上正常打开<br><img src="http://i11.tietuku.com/486d407d710bf3e8.png" alt="chrome"></p>
+<p>那么问题可能不是chrome vs. safari，而是默认浏览器 vs. 指定浏览器。</p>
+<p>之后花了很长时间去啃webbrowser.py的<a href="https://hg.python.org/cpython/file/2.7/Lib/webbrowser.py" target="_blank" rel="external">源代码</a>，虽然只能看懂一点点，但关键的信息get到了</p>
+<p><img src="http://i11.tietuku.com/a577e41f97a3ec07.png" alt="webbrowser源码"><br>上图是源码的一个片段，主要看open()函数下if else语句，发现python里的webbrowser库在mac下其实是调用AppleScript命令</p>
+<ul>
+<li>使用默认浏览器时，执行命令为<code>open location 网址</code></li>
+<li>使用其他浏览器时，执行命令为</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="type">application</span> 浏览器</span><br><span class="line">    <span class="command">activate</span></span><br><span class="line">    open location 网址</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>然后开始测试AppleScript，在mac的脚本编辑器里运行</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="type">application</span> <span class="string">"Google Chrome"</span></span><br><span class="line">	<span class="command">activate</span></span><br><span class="line">	open location <span class="string">"http://www.google.com?q=中文搜索"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>打开的网址中文显示正确</p>
+<p>再运行</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open <span class="keyword">location</span> <span class="title">"http</span>://www.google.com?q=中文搜索<span class="string">"</span></span><br></pre></td></tr></table></figure>
+<p>没有任何反应</p>
+<p>网上搜到了一条命令，试着在命令行运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'open location "http://www.google.com?q=中文搜索"'</span> | osascript</span><br></pre></td></tr></table></figure>
+<p>发现随之在chrome上打开的网址中文<strong>显示错误</strong>，跟之前用webbrowser.open从默认浏览器打开的结果<strong>一样</strong>！</p>
+<p>之后再将safari设置成默认浏览器测试上面那条命令，发现打开的网址还是一样的错误网址。</p>
+<p>那么，总算是知道问题出在哪了</p>
+<p>初步结论：mac下直接运行<code>open location {带中文字符的网址}</code>这样的AppleScript会打开错误的网址</p>
+<p>现在回过头看，不应该在unicode等编码上花那么多时间去测试，因为</p>
+<ul>
+<li><code>webbrowser.open(&quot;http://www.google.com?q=中文搜索&quot;)</code>打开了错误的网址</li>
+<li><code>print &quot;http://www.google.com?q=中文搜索&quot;</code>能显示正确的网址</li>
+</ul>
+<p>这就说明问题很大可能出现在webbrowser内部机制，而不在编码上。</p>
+<p>ps：源代码确实难啃，但看了之后确实收获很大。<br>这次印象比较深的是这样一个语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">my_list = []</span><br><span class="line"><span class="keyword">if</span> condition_a:</span><br><span class="line">    my_list.append(some_element)</span><br><span class="line"><span class="keyword">elif</span> condition_b:</span><br><span class="line">    my_list.insert(<span class="number">0</span>, some_elemen)</span><br></pre></td></tr></table></figure>
+<p>即要将一个元素加进一个链表时，通过一些条件，选择将元素添加到链表的尾部或头部，这样在之后遍历这个链表时，元素会被最晚或最早使用。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/23/diary/" rel="prev" title="python练习：建立交互日记系统">
+                python练习：建立交互日记系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="Alan Lai" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Alan Lai</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wp-lai" target="_blank">
+                  <i class="fa fa-github fa-fw"></i> GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构思"><span class="nav-number">2.</span> <span class="nav-text">构思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debug"><span class="nav-number">5.</span> <span class="nav-text">debug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">6.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">6.1.</span> <span class="nav-text">update</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Lai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'wp-lai';
+      var disqus_identifier = '2015/10/20/taobao/';
+      var disqus_title = 'python练习：命令行进行淘宝搜索';
+      var disqus_url = 'http://yoursite.com/2015/10/20/taobao/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      isMobile() && FastClick.attach(document.body);
+
+      // Define Motion Sequence.
+      motionIntegrator
+        .add(motionMiddleWares.logo)
+        .add(motionMiddleWares.menu)
+        .add(motionMiddleWares.backToTop)
+        .add(motionMiddleWares.postList)
+        .add(motionMiddleWares.sidebar);
+
+      // Bootstrap Motion.
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
