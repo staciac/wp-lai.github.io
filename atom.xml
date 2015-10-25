@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-10-23T10:34:45.000Z</updated>
+  <updated>2015-10-25T13:30:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Mac下给终端使用代理]]></title>
+    <link href="http://yoursite.com/2015/10/25/proxychains4/"/>
+    <id>http://yoursite.com/2015/10/25/proxychains4/</id>
+    <published>2015-10-25T13:20:19.000Z</published>
+    <updated>2015-10-25T13:30:08.000Z</updated>
+    <content type="html"><![CDATA[<p>很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用<br><a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external">proxychains-ng</a></p>
+<h3 id="安装proxychains-ng">安装proxychains-ng</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install proxychains-ng</span><br></pre></td></tr></table></figure>
+<p>安装过程中如果出现问题，可以查</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>doctor</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew doctor <span class="string">| grep "</span>问题信息<span class="string">"</span></span><br></pre></td></tr></table></figure>
+<p>查看解决办法。</p>
+<h3 id="配置config文件">配置config文件</h3><p>安装完之后需要配置一个<code>proxychains.conf</code>文件，</p>
+<p>它的位置可以在</p>
+<ul>
+<li>./proxychains.conf</li>
+<li>$(HOME)/.proxychains/proxychains.conf</li>
+<li>$(sysconfdir)/proxychains.conf 通常是（/etc/proxychains.conf）</li>
+</ul>
+<p>也可以是写进环境变量<code>PROXYCHAINS_CONF_FILE</code>里</p>
+<p>如果不在上述地方里，也可以用<code>-f</code>参数加文件地址，如</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 -f /etc/proxychains-other<span class="class">.conf</span> telnet targethost2.com</span><br></pre></td></tr></table></figure>
+<p>cofig文件的写法可以参照<a href="https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf" target="_blank" rel="external">proxychains.conf</a>进行设置，主要把最后一行的代理改为自己的代理就行了。</p>
+<h3 id="使用">使用</h3><p>需要通过代理使用命令时在前面加<code>proxychains4</code>即可</p>
+<p>可以用下面的方法来测试是否设置成功（测试连接twitter）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">proxychians4</span> <span class="tag">curl</span> <span class="tag">twitter</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
+<h3 id="El_Capitan下无法使用的解决方法">El Capitan下无法使用的解决方法</h3><p>由于El Capitan引入了<a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">SIP机制(System Integrity Protection)</a>，安装上的proxychains-ng无法正常使用，一种解决办法是取消SIP机制，具体做法是：</p>
+<blockquote>
+<ul>
+<li>重启电脑，按住<code>Command+R</code>(直到出现苹果标志)进入Recovery Mode</li>
+<li>左上角菜单里找到<code>实用工具</code> -&gt; <code>终端</code></li>
+<li>输入<code>csrutil disable</code>回车</li>
+<li>重启Mac即可</li>
+</ul>
+</blockquote>
+<p>如果想重新启动SIP机制重复上述步骤改用<code>csrutil enable</code>即可</p>
+<h3 id="结合curl">结合curl</h3><p>给终端上了代理之后，就可以用终端来进行下载，<code>curl</code>的命令如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o <span class="tag">&lt;<span class="title">file</span>&gt;</span> <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这条命令可以下载url里的内容到file中。</p>
+<p>然后，通过使用<code>-L</code>可以使地址重定向，使用<code>-C</code>可以进行断点续传，用<code>--limit-rate 1000B</code>可以限制下载速度不超过1000B/s。</p>
+<p>需要授权时，使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">curl</span> <span class="tag">-u</span> <span class="tag">username</span><span class="pseudo">:password</span> <span class="tag">URL</span></span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用<br><a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external">proxychains-]]>
+    </summary>
+    
+      <category term="mac" scheme="http://yoursite.com/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[python练习：建立交互日记系统]]></title>
@@ -156,57 +207,6 @@
     </summary>
     
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Mac下给终端使用代理]]></title>
-    <link href="http://yoursite.com/2015/10/20/proxychains4/"/>
-    <id>http://yoursite.com/2015/10/20/proxychains4/</id>
-    <published>2015-10-20T13:20:19.000Z</published>
-    <updated>2015-10-25T13:20:54.000Z</updated>
-    <content type="html"><![CDATA[<p>很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用<br><a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external">proxychains-ng</a></p>
-<h3 id="安装proxychains-ng">安装proxychains-ng</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>install proxychains-ng</span><br></pre></td></tr></table></figure>
-<p>安装过程中如果出现问题，可以查</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">brew </span>doctor</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew doctor <span class="string">| grep "</span>问题信息<span class="string">"</span></span><br></pre></td></tr></table></figure>
-<p>查看解决办法。</p>
-<h3 id="配置config文件">配置config文件</h3><p>安装完之后需要配置一个<code>proxychains.conf</code>文件，</p>
-<p>它的位置可以在</p>
-<ul>
-<li>./proxychains.conf</li>
-<li>$(HOME)/.proxychains/proxychains.conf</li>
-<li>$(sysconfdir)/proxychains.conf 通常是（/etc/proxychains.conf）</li>
-</ul>
-<p>也可以是写进环境变量<code>PROXYCHAINS_CONF_FILE</code>里</p>
-<p>如果不在上述地方里，也可以用<code>-f</code>参数加文件地址，如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 -f /etc/proxychains-other<span class="class">.conf</span> telnet targethost2.com</span><br></pre></td></tr></table></figure>
-<p>cofig文件的写法可以参照<a href="https://github.com/rofl0r/proxychains-ng/blob/master/src/proxychains.conf" target="_blank" rel="external">proxychains.conf</a>进行设置，主要把最后一行的代理改为自己的代理就行了。</p>
-<h3 id="使用">使用</h3><p>需要通过代理使用命令时在前面加<code>proxychains4</code>即可</p>
-<p>可以用下面的方法来测试是否设置成功（测试连接twitter）</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">proxychians4</span> <span class="tag">curl</span> <span class="tag">twitter</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
-<h3 id="El_Capitan下无法使用的解决方法">El Capitan下无法使用的解决方法</h3><p>由于El Capitan引入了<a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">SIP机制(System Integrity Protection)</a>，安装上的proxychains-ng无法正常使用，一种解决办法是取消SIP机制，具体做法是：</p>
-<blockquote>
-<ul>
-<li>重启电脑，按住<code>Command+R</code>(直到出现苹果标志)进入Recovery Mode</li>
-<li>左上角菜单里找到<code>实用工具</code> -&gt; <code>终端</code></li>
-<li>输入<code>csrutil disable</code>回车</li>
-<li>重启Mac即可</li>
-</ul>
-</blockquote>
-<p>如果想重新启动SIP机制重复上述步骤改用<code>csrutil enable</code>即可</p>
-<h3 id="结合curl">结合curl</h3><p>给终端上了代理之后，就可以用终端来进行下载，<code>curl</code>的命令如下</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o <span class="tag">&lt;<span class="title">file</span>&gt;</span> <span class="tag">&lt;<span class="title">url</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这条命令可以下载url里的内容到file中。</p>
-<p>然后，通过使用<code>-L</code>可以使地址重定向，使用<code>-C</code>可以进行断点续传，用<code>--limit-rate 1000B</code>可以限制下载速度不超过1000B/s。</p>
-<p>需要授权时，使用</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">curl</span> <span class="tag">-u</span> <span class="tag">username</span><span class="pseudo">:password</span> <span class="tag">URL</span></span><br></pre></td></tr></table></figure>]]></content>
-    <summary type="html">
-    <![CDATA[<p>很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用<br><a href="https://github.com/rofl0r/proxychains-ng" target="_blank" rel="external">proxychains-]]>
-    </summary>
-    
-      <category term="mac" scheme="http://yoursite.com/tags/mac/"/>
     
   </entry>
   
