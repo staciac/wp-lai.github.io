@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    <lastmod>2015-10-25T02:04:05.000Z</lastmod>
+    <loc>http://yoursite.com/2015/10/20/proxychains4/</loc>
+    <lastmod>2015-10-25T13:20:54.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://yoursite.com/2015/10/20/taobao/</loc>
-    <lastmod>2015-10-25T01:59:44.000Z</lastmod>
+    <lastmod>2015-10-25T13:20:52.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    <lastmod>2015-10-25T02:04:05.000Z</lastmod>
   </url>
   
   <url>
