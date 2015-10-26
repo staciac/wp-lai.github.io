@@ -65,7 +65,7 @@
 1$ brew doctor | grep &quot;问题信息&quot;
 查看解决办法。
 配置config文件安装完之后需要配置一个proxycha">
-<meta property="og:updated_time" content="2015-10-25T13:30:08.000Z">
+<meta property="og:updated_time" content="2015-10-26T11:00:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下给终端使用代理">
 <meta name="twitter:description" content="很多科学上网的代理不是全局的，而很多命令行语言需要用代理来加速，这时候可以使用proxychains-ng
@@ -294,6 +294,8 @@
 <h3 id="使用">使用</h3><p>需要通过代理使用命令时在前面加<code>proxychains4</code>即可</p>
 <p>可以用下面的方法来测试是否设置成功（测试连接twitter）</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">proxychians4</span> <span class="tag">curl</span> <span class="tag">twitter</span><span class="class">.com</span></span><br></pre></td></tr></table></figure>
+<p>如果嫌字符串长，可以在<code>~/.bash_profile</code>文件(bash)或<code>~/.zshrc</code>(zsh)里加一个别名<br><figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alias</span> <span class="title">pc</span>=<span class="string">"proxychains4"</span></span><br></pre></td></tr></table></figure></p>
+<p>这样之后前面加<code>pc</code>就行</p>
 <h3 id="El_Capitan下无法使用的解决方法">El Capitan下无法使用的解决方法</h3><p>由于El Capitan引入了<a href="https://support.apple.com/en-us/HT204899" target="_blank" rel="external">SIP机制(System Integrity Protection)</a>，安装上的proxychains-ng无法正常使用，一种解决办法是取消SIP机制，具体做法是：</p>
 <blockquote>
 <ul>
